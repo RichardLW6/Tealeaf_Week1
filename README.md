@@ -1,3 +1,3 @@
-# README #
+# TEALEAF WEEK 1 #
 
-Making my first updates to the README file.
+The exercises and practice problems for TeaLeaf Week 1
