@@ -1,19 +1,19 @@
 # BLACKJACK V.1
 
 #### CHECK FOR ACES AND ADJUST HAND VALUE
-def ace_check(hand, value)
+def adjust_value_for_aces(hand, value)
   aces = [] 
   hand.each do |x|
     if x[0..2] == "Ace"
       aces.push(x)
     end
   end
-  checker = aces.length
-  if checker != 0 && value > 21
+  ace_count = aces.length
+  if ace_count != 0 && value > 21
     begin
       value -= 10
-      checker -= 1
-    end until value <= 21 || checker == 0
+      ace_count -= 1
+    end until value <= 21 || ace_count == 0
   end
   value
 end
@@ -33,8 +33,8 @@ def hand_values(hand)
 end
 
 #### STATING THE PLAYER HAND VALUE
-def say_player_hand_value(hand, hand_value)
-  puts "Your hand is #{hand} which comes to a total value of #{hand_value}"
+def say_player_hand_value(hand)
+  puts "Your hand is #{hand} which comes to a total value of " + adjust_value_for_aces(hand_values(hand)).to_s
 end
 
 #### STATING THE COMPUTER STARTING HAND
@@ -89,7 +89,7 @@ begin
 
   #### STATE THE INITIAL HANDS OF BOTH PLAYERS
   say_dealer_hand_value(dealer_hand, dealer_values)
-  say_player_hand_value(player_hand, player_values)
+  say_player_hand_value(player_hand)
 
   #### CHECK FOR PLAYER BLACKJACK
   player_blackjack = false
@@ -108,12 +108,12 @@ begin
       if player_decision == "HIT"
         hit(player_hand, cards)
         player_values = hand_values(player_hand)
-        if ace_check(player_hand, player_values) > 21 
-          say_player_hand_value(player_hand, ace_check(player_hand, player_values))
+        if adjust_value_for_aces(player_hand, player_values) > 21 
+          say_player_hand_value(player_hand)
           puts "Sorry, you busted, and you're a loser!"
           break
         end
-        say_player_hand_value(player_hand, ace_check(player_hand, player_values))
+        say_player_hand_value(player_hand)
       elsif player_decision == "STAND"
         break
       else 
@@ -123,14 +123,14 @@ begin
   end
 
   #### DEALER TURN
-  if player_blackjack == false && ace_check(player_hand, player_values) <= 21
+  if player_blackjack == false && adjust_value_for_aces(player_hand, player_values) <= 21
     begin
       puts "The dealer flips another card."
       hit(dealer_hand, cards)
       dealer_values = hand_values(dealer_hand)
-      say_dealer_hand_value(dealer_hand, ace_check(dealer_hand, dealer_values))
-    end until ace_check(dealer_hand, dealer_values) >= 17 || ace_check(dealer_hand, dealer_values) > ace_check(player_hand, player_values)
-    winning_hand(ace_check(dealer_hand, dealer_values), ace_check(player_hand, player_values))
+      say_dealer_hand_value(dealer_hand, adjust_value_for_aces(dealer_hand, dealer_values))
+    end until adjust_value_for_aces(dealer_hand, dealer_values) >= 17 || adjust_value_for_aces(dealer_hand, dealer_values) > adjust_value_for_aces(player_hand, player_values)
+    winning_hand(adjust_value_for_aces(dealer_hand, dealer_values), adjust_value_for_aces(player_hand, player_values))
   end
 
   #### ASK PLAYER TO CONTINUE OR STOP PLAYING
@@ -140,12 +140,6 @@ begin
   end until continue_answer == "Y" || continue_answer == "N"
 
 end until continue_answer == "N"
-
-
-
-
-
-
 
 
 
