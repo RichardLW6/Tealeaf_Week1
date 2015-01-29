@@ -1,5 +1,4 @@
-# BLACKJACK V.1
-
+# BLACKJACK V.3
 
 #### CREATING THE DECK
 
@@ -63,11 +62,13 @@ def say_dealer_hand_value(hand)
 end
 
 #### ADDING ANOTHER CARD TO A HAND (HITTING)
+
 def hit(hand, deck)
   hand.push(deck.pop)
 end
 
 #### DETERMINING THE WINNING HAND
+
 def determine_winning_hand(dealer, player)
   if dealer > 21
     puts "The dealer busts with a hand total of #{dealer}. You win!"
@@ -88,7 +89,7 @@ begin
   cards = create_deck
 
   #### SHUFFLE THE CARDS
-  
+
   cards.shuffle!
 
   #### DEAL HANDS
@@ -157,6 +158,3 @@ begin
   end until continue_answer == "Y" || continue_answer == "N"
 
 end until continue_answer == "N"
-
-
-
