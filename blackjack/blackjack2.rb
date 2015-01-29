@@ -55,7 +55,6 @@ end
 #### FINDING THE WINNING HAND
 
 def winning_hand(dealer, player)
-
   if dealer > 21
     puts "The dealer busts with a hand total of #{dealer}. You win!"
   elsif dealer > player
@@ -70,12 +69,9 @@ end
 #### CREATING THE DECK
 
 def create_deck
-
   face_cards = ["Ace_", "King_", "Queen_", "Jack_", "10_", "9_", "8_", "7_", "6_", "5_", "4_", "3_", "2_"]
   suits = ["Spades", "Hearts", "Clubs", "Diamonds"]
-
   deck = []
-
   face_cards.each do |x|
     suits.each do |y|
       deck.push(x + y)
@@ -84,19 +80,14 @@ def create_deck
   deck
 end
 
-
 #### STARTS OFF THE GAME
-
 begin
-
   cards = create_deck
 
   #### SHUFFLE THE CARDS
-
   cards.shuffle!
 
   #### DEAL HANDS
-
   player_hand = 2.times.collect{cards.pop}
   dealer_hand = 1.times.collect{cards.pop}
 
@@ -104,12 +95,10 @@ begin
   dealer_values = hand_values(dealer_hand)
 
   #### STATE THE INITIAL HANDS OF BOTH PLAYERS
-
   say_dealer_hand_value(dealer_hand, dealer_values)
   say_player_hand_value(player_hand, player_values)
 
   #### CHECK FOR PLAYER BLACKJACK
-
   player_blackjack = false
   dealer_blackjack = false
 
@@ -119,7 +108,6 @@ begin
   end
 
   #### PLAYER TURN
-
   if player_blackjack == false
     while true
       puts "Would you like to HIT or STAND?"
@@ -142,20 +130,17 @@ begin
   end
 
   #### DEALER TURN
-
   if player_blackjack == false && ace_check(player_hand, player_values) <= 21
     begin
       puts "The dealer flips another card."
       hit(dealer_hand, cards)
       dealer_values = hand_values(dealer_hand)
       say_dealer_hand_value(dealer_hand, ace_check(dealer_hand, dealer_values))
-
     end until ace_check(dealer_hand, dealer_values) >= 17 || ace_check(dealer_hand, dealer_values) > ace_check(player_hand, player_values)
     winning_hand(ace_check(dealer_hand, dealer_values), ace_check(player_hand, player_values))
   end
 
   #### ASK PLAYER TO CONTINUE OR STOP PLAYING
-
   begin
     puts "Would you like to play again? Y/N"
     continue_answer = gets.chomp.upcase
@@ -163,8 +148,6 @@ begin
 
 end until continue_answer == "N"
 
-
-#### END OF GAME
 
 
 
