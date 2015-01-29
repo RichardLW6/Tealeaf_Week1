@@ -1,7 +1,6 @@
 # BLACKJACK V.1
 
 #### CHECK FOR ACES AND ADJUST HAND VALUE
-
 def ace_check(hand, value)
   aces = [] 
   hand.each do |x|
@@ -20,7 +19,6 @@ def ace_check(hand, value)
 end
 
 #### ASSIGN VALUES TO HANDS
-
 def hand_values(hand)
   value_hand = hand.map do |x|
     if x.include?("Ace")
@@ -35,25 +33,21 @@ def hand_values(hand)
 end
 
 #### STATING THE PLAYER HAND VALUE
-
 def say_player_hand_value(hand, hand_value)
   puts "Your hand is #{hand} which comes to a total value of #{hand_value}"
 end
 
 #### STATING THE COMPUTER STARTING HAND
-
 def say_dealer_hand_value(hand, hand_value)
   puts "The computer is showing a #{hand} which comes to a total value of #{hand_value}"
 end
 
 #### HITTING CARDS
-
 def hit(hand, deck)
   hand = hand.push(deck.pop)
 end
 
 #### FINDING THE WINNING HAND
-
 def winning_hand(dealer, player)
   if dealer > 21
     puts "The dealer busts with a hand total of #{dealer}. You win!"
@@ -67,7 +61,6 @@ def winning_hand(dealer, player)
 end
 
 #### CREATING THE DECK
-
 def create_deck
   face_cards = ["Ace_", "King_", "Queen_", "Jack_", "10_", "9_", "8_", "7_", "6_", "5_", "4_", "3_", "2_"]
   suits = ["Spades", "Hearts", "Clubs", "Diamonds"]
