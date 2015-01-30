@@ -1,15 +1,16 @@
 #My first Calculator
 
+#### ASK USER FOR CALCULATOR ACTION
+
+begin
 puts "Welcome to the Calculator. What function would you like to do? Put ADD, SUBTRACT, MULTIPLY, or DIVIDE"
-
 user_action = gets.chomp
-
+end until ["ADD", "SUBTRACT", "MULTIPLY", "DIVIDE"].include?(user_action)
 
 def add_function(number1, number2)
   answer1 = number1.to_f + number2.to_f
   puts "The answer to your calculation is #{answer1}"
 end
-
 
 def subtract_function(number1, number2)
   answer2 = number1.to_f - number2.to_f
