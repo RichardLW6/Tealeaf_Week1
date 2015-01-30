@@ -39,7 +39,7 @@ def determine_hand_value(hand)
   value_hand = hand.map do |x|
     if x.include?("Ace")
       x = 11
-    elsif x.include?("K") || x.include?("Q") || x.include?("J") || x.include?("1")
+    elsif ["K", "Q", "J", "1"].include?(x[0])
       x = 10
     else
       x = x[0].to_i
@@ -108,7 +108,6 @@ begin
   #### CHECK FOR PLAYER BLACKJACK
 
   player_blackjack = false
-  dealer_blackjack = false
 
   if determine_hand_value(player_hand) == 21
     puts "Congratulations, you have a blackjack and are the winner!"
@@ -125,11 +124,11 @@ begin
         hit(player_hand, cards)
         player_values = determine_hand_value(player_hand)
         if player_values > 21 
-          say_player_determine_hand_value(player_hand)
+          say_player_hand_value(player_hand)
           puts "Sorry, you busted, and you're a loser!"
           break
         end
-        say_player_determine_hand_value(player_hand)
+        say_player_hand_value(player_hand)
       elsif player_decision == "STAND"
         break
       else 
@@ -155,6 +154,6 @@ begin
   begin
     puts "Would you like to play again? Y/N"
     continue_answer = gets.chomp.upcase
-  end until continue_answer == "Y" || continue_answer == "N"
+  end until ["Y", "N"].include?(continue_answer)
 
 end until continue_answer == "N"
