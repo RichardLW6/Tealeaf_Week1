@@ -81,8 +81,6 @@ def determine_winning_hand(dealer, player)
   end
 end
 
-
-
 #### STARTS OFF THE GAME
 
 begin
